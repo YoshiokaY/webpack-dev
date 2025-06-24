@@ -3,6 +3,9 @@ import { fileURLToPath } from "url";
 import { glob } from "glob";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import RemoveEmptyScriptsPlugin from "webpack-remove-empty-scripts";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,6 +29,7 @@ scssFiles.forEach((file) => {
 
 export default (env, argv) => {
   const isProduction = argv.mode === "production";
+  const shouldMinify = process.env.MINIFY !== "false";
 
   return {
     mode: isProduction ? "production" : "development",
@@ -39,8 +43,7 @@ export default (env, argv) => {
       },
     },
     optimization: {
-      minimize: false,
-      minimizer: [],
+      minimize: shouldMinify,
     },
     module: {
       rules: [
@@ -98,7 +101,6 @@ export default (env, argv) => {
     watch: !isProduction,
     watchOptions: {
       ignored: /node_modules/,
-      poll: 1000,
     },
   };
 };
