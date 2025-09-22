@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ES2020",
+    "types": ["jquery", "node"],
+    "lib": ["ES2020", "DOM"],
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "allowJs": true, // JSファイルからTSをインポート可能に
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"] // エイリアスの設定（オプション）
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
