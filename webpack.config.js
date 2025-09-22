@@ -3,6 +3,7 @@ import { fileURLToPath } from "url";
 import { glob } from "glob";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import RemoveEmptyScriptsPlugin from "webpack-remove-empty-scripts";
+import ImageMinimizerPlugin from "image-minimizer-webpack-plugin";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -27,23 +28,30 @@ scssFiles.forEach((file) => {
   entries[name] = file;
 });
 
+// 画像ファイルのエントリー
+const imageFiles = await glob("src/_assets/img/**/*.{jpg,jpeg,png,gif,svg}");
+imageFiles.forEach((file) => {
+  const name = file.replace("src/", "").replace(/\.(jpg|jpeg|png|gif|svg)$/, "");
+  entries[name] = file;
+});
+
 export default (env, argv) => {
   const isProduction = argv.mode === "production";
   const shouldMinify = process.env.MINIFY !== "false";
+  const shouldCompressImages = process.env.COMPRESS_IMAGES !== "false";
+  const shouldConvertToWebP = process.env.CONVERT_TO_WEBP === "true";
+  const assetsOutputDir = process.env.ASSETS_OUTPUT_DIR || "_assets";
 
   return {
     mode: isProduction ? "production" : "development",
     entry: entries,
     output: {
       path: path.resolve(__dirname, "htdocs"),
-      filename: "[name].js",
+      filename: `${assetsOutputDir}/js/[name].js`,
       // clean: false,
       clean: {
         keep: (asset) => !asset.endsWith(".map"),
       },
-    },
-    optimization: {
-      minimize: shouldMinify,
     },
     module: {
       rules: [
@@ -81,14 +89,73 @@ export default (env, argv) => {
             },
           ],
         },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          type: "asset/resource",
+          generator: {
+            filename: (pathData) => {
+              const relativePath = pathData.filename.replace("src/_assets/img/", "");
+              return `${assetsOutputDir}/img/${relativePath}`;
+            },
+          },
+        },
       ],
     },
     plugins: [
       new RemoveEmptyScriptsPlugin(),
       new MiniCssExtractPlugin({
-        filename: "[name].css",
+        filename: `${assetsOutputDir}/css/[name].css`,
       }),
+      ...(shouldCompressImages ? [
+        new ImageMinimizerPlugin({
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          minimizer: {
+            implementation: ImageMinimizerPlugin.imageminMinify,
+            options: {
+              plugins: [
+                ["imagemin-mozjpeg", { quality: 80 }],
+                ["imagemin-pngquant", { quality: [0.6, 0.8] }],
+                ["imagemin-gifsicle", { interlaced: true }],
+                ["imagemin-svgo", {
+                  plugins: [
+                    {
+                      name: "preset-default",
+                      params: {
+                        overrides: {
+                          removeViewBox: false,
+                        },
+                      },
+                    },
+                  ],
+                }],
+              ],
+            },
+          },
+        })
+      ] : []),
+      ...(shouldConvertToWebP ? [
+        new ImageMinimizerPlugin({
+          test: /\.(jpe?g|png|gif)$/i,
+          deleteOriginalAssets: true,
+          generator: [
+            {
+              type: "asset",
+              implementation: ImageMinimizerPlugin.imageminGenerate,
+              options: {
+                plugins: ["imagemin-webp"],
+              },
+              filename: `${assetsOutputDir}/img/[path][name].webp`,
+            },
+          ],
+        })
+      ] : []),
     ],
+    optimization: {
+      minimize: shouldMinify,
+      minimizer: shouldMinify ? [
+        "...",
+      ] : [],
+    },
     resolve: {
       extensions: [".ts", ".js", ".json"],
       extensionAlias: {

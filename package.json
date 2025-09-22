@@ -1,7 +1,7 @@
 {
   "name": "webpack-dev",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.5.0",
   "type": "module",
   "scripts": {
     "start": "run-p webpack:watch serve task:watch",
@@ -9,15 +9,14 @@
     "webpack:watch": "webpack --watch",
     "serve": "browser-sync start --config bs-config.cjs",
     "build": "webpack --mode production",
-    "lint": "eslint 'src/**/*.{js,ts}' --fix",
+    "lint": "eslint 'src/**/*.{js,ts,astro,json}' --fix",
     "lint:css": "stylelint 'src/**/*.scss' --fix",
-    "lint:all": "run-p lint lint:css markup",
-    "clean": "rm -rf htdocs/nadia_css htdocs/nadia_js",
-    "markup": "markuplint -f JSON htdocs/**/**.html --fix --config .markuplintrc",
-    "lint:ci": "run-s lint:js:ci lint:css:ci markup:ci",
-    "lint:js:ci": "eslint 'src/**/*.{js,ts}' --format json --output-file eslint-report.json",
+    "lint:markup": "markuplint 'htdocs/**/*.{html,php}' --fix --config .markuplintrc",
+    "lint:all": "run-p lint lint:css lint:markup",
+    "lint:ci": "run-s lint:js:ci lint:css:ci lint:markup:ci",
+    "lint:js:ci": "eslint 'src/**/*.{js,ts,astro,json}' --format json --output-file eslint-report.json",
     "lint:css:ci": "stylelint 'src/**/*.scss' --formatter json > stylelint-report.json",
-    "markup:ci": "markuplint -f JSON htdocs/**/*.html > markuplint-report.json"
+    "lint:markup:ci": "markuplint 'htdocs/**/*.{html,php}' -f JSON > markuplint-report.json"
   },
   "browserslist": [
     "last 2 version",
@@ -38,6 +37,13 @@
     "eslint-config-prettier": "^10.1.5",
     "glob": "^11.0.3",
     "globals": "^16.2.0",
+    "image-minimizer-webpack-plugin": "^4.1.4",
+    "imagemin": "^9.0.1",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^10.0.0",
+    "imagemin-svgo": "^11.0.1",
+    "imagemin-webp": "^8.0.0",
     "jquery": "^3.7.1",
     "markuplint": "^4.12.0",
     "mini-css-extract-plugin": "^2.9.2",
@@ -47,19 +53,16 @@
     "prettier": "^3.5.3",
     "sass": "^1.89.2",
     "sass-loader": "^16.0.5",
-    "stylelint": "^16.14.1",
+    "stylelint": "^16.21.0",
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-recess-order": "^6.0.0",
     "stylelint-config-standard-scss": "^14.0.0",
-    "tailwindcss": "^4.0.3",
+    "tailwindcss": "^4.1.10",
     "ts-loader": "^9.5.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.34.1",
     "webpack": "^5.99.9",
     "webpack-cli": "^6.0.1",
     "webpack-remove-empty-scripts": "^1.1.1"
-  },
-  "dependencies": {
-    "@anthropic-ai/claude-code": "^1.0.33"
   }
 }
