@@ -13,6 +13,8 @@ dist-ssr
 *.local
 pnpm-workspace.yaml
 pnpm-lock.yaml
+package-lock.json
+CLAUDE.md
 
 
 # Editor directories and files
