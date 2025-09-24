@@ -14,9 +14,10 @@ const __dirname = path.dirname(__filename);
 const entries = {};
 
 // JS/TSファイルのエントリー（直下ファイルのみ）
-glob.sync("src/_assets/js/*.{js,ts}").forEach((file) => {
+const jsFiles = await glob("src/_assets/js/*.{js,ts}");
+jsFiles.forEach((file) => {
   const name = path.basename(file, path.extname(file));
-  entries[name] = file;
+  entries[`js/${name}`] = file;
 });
 
 // SCSSファイルのエントリー（_から始まるファイルは除く）
@@ -25,7 +26,7 @@ const scssFiles = await glob("src/_assets/css/**/*.scss", {
 });
 scssFiles.forEach((file) => {
   const name = path.basename(file, '.scss');
-  entries[name] = file;
+  entries[`css/${name}`] = file;
 });
 
 // 画像ファイルのエントリー
@@ -33,7 +34,7 @@ const imageFiles = await glob("src/_assets/img/**/*.{jpg,jpeg,png,gif,svg}");
 imageFiles.forEach((file) => {
   const relativePath = path.relative("src/_assets/img", file);
   const name = relativePath.replace(/\.(jpg|jpeg|png|gif|svg)$/, "");
-  entries[`img/${name}`] = file;
+  entries[name] = file;
 });
 
 export default (env, argv) => {
@@ -48,7 +49,13 @@ export default (env, argv) => {
     entry: entries,
     output: {
       path: path.resolve(__dirname, "htdocs"),
-      filename: `${assetsOutputDir}/js/[name].js`,
+      filename: (pathData) => {
+        const entryName = pathData.chunk.name;
+        if (entryName.startsWith('js/')) {
+          return `${assetsOutputDir}/js/${entryName.replace('js/', '')}.js`;
+        }
+        return `${assetsOutputDir}/js/[name].js`;
+      },
       // clean: false,
       clean: {
         keep: (asset) => !asset.endsWith(".map"),
@@ -105,7 +112,13 @@ export default (env, argv) => {
     plugins: [
       new RemoveEmptyScriptsPlugin(),
       new MiniCssExtractPlugin({
-        filename: `${assetsOutputDir}/css/[name].css`,
+        filename: (pathData) => {
+          const entryName = pathData.chunk.name;
+          if (entryName.startsWith('css/')) {
+            return `${assetsOutputDir}/css/${entryName.replace('css/', '')}.css`;
+          }
+          return `${assetsOutputDir}/css/[name].css`;
+        },
       }),
       ...(shouldCompressImages ? [
         new ImageMinimizerPlugin({
@@ -145,7 +158,11 @@ export default (env, argv) => {
               options: {
                 plugins: ["imagemin-webp"],
               },
-              filename: `${assetsOutputDir}/img/[path][name].webp`,
+              filename: (pathData) => {
+                // pathData.filenameはすでに出力パス（_assets/img/top/okami.webp）
+                // そのまま使用する（重複を避ける）
+                return pathData.filename;
+              },
             },
           ],
         })
