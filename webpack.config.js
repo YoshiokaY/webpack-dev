@@ -15,7 +15,7 @@ const entries = {};
 
 // JS/TSファイルのエントリー（直下ファイルのみ）
 glob.sync("src/_assets/js/*.{js,ts}").forEach((file) => {
-  const name = file.replace("src/", "").replace(/\.(js|ts)$/, "");
+  const name = path.basename(file, path.extname(file));
   entries[name] = file;
 });
 
@@ -24,15 +24,16 @@ const scssFiles = await glob("src/_assets/css/**/*.scss", {
   ignore: ["**//_*.scss"],
 });
 scssFiles.forEach((file) => {
-  const name = file.replace("src/", "").replace(/\.scss$/, "");
+  const name = path.basename(file, '.scss');
   entries[name] = file;
 });
 
 // 画像ファイルのエントリー
 const imageFiles = await glob("src/_assets/img/**/*.{jpg,jpeg,png,gif,svg}");
 imageFiles.forEach((file) => {
-  const name = file.replace("src/", "").replace(/\.(jpg|jpeg|png|gif|svg)$/, "");
-  entries[name] = file;
+  const relativePath = path.relative("src/_assets/img", file);
+  const name = relativePath.replace(/\.(jpg|jpeg|png|gif|svg)$/, "");
+  entries[`img/${name}`] = file;
 });
 
 export default (env, argv) => {
