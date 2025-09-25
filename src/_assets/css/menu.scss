@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+@use "vendors/_tailwind.css";
+
+// 共通スタイル（abstracts、base styles）
+@use "pages/_top.scss"; // 共通のベーススタイル、ヘッダー、フッターを含む
+
+// メニューページ固有のスタイル
+@use "pages/_menu.scss";

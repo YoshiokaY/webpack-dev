@@ -1,5 +1,10 @@
-import { HogeScript } from "./class/sample.ts";
+import { Tab } from "./class/Tab.ts";
 
 window.addEventListener("load", () => {
-  new HogeScript();
+  new Tab();
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  const img = document.querySelector("#concept .section-title");
+  console.log(img.innerHTML);
 });

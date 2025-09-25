@@ -3,7 +3,15 @@
 // ブレークポイント
 $brakePoint: 768;
 
-// カラーパレット
+// カラーパレット（料亭みかみ）
 $color-text: #333;
-$color-prime: #00f;
-$color-second: #f0f;
+$color-prime: #8B4513; // 落ち着いたブラウン
+$color-second: #D2B48C; // ライトブラウン
+$color-accent: #DC143C; // 和の赤色
+$color-white: #FFF;
+$color-bg-light: #FAF7F2; // クリーム色
+$color-border: #E5E5E5;
+$color-reversal: #FAF7F2; // タブ用リバーサル色
+
+// アニメーション
+$easing: 0.3s ease;

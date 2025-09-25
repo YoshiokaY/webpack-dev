@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="jp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>料亭みかみ - 伝統の味と心のおもてなし</title>
+    <link rel="stylesheet" href="/_assets/css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <h1 class="logo">料亭みかみ</h1>
+          <nav class="nav">
+            <ul class="nav-list">
+              <li class="nav-item"><a href="#home" class="nav-link">ホーム</a></li>
+              <li class="nav-item"><a href="menu.html" class="nav-link">お品書き</a></li>
+              <li class="nav-item"><a href="#recommendations" class="nav-link">今月のおすすめ</a></li>
+              <li class="nav-item"><a href="#concept" class="nav-link">コンセプト</a></li>
+              <li class="nav-item"><a href="#access" class="nav-link">アクセス</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- ヒーローセクション -->
+      <section id="home" class="hero">
+        <div class="hero-content">
+          <h2 class="hero-title">伝統の味と心のおもてなし</h2>
+          <p class="hero-description">
+            四季の移ろいとともに、厳選された食材で織りなす<br>
+            心に響く料理をお届けいたします
+          </p>
+          <div class="hero-buttons">
+            <a href="menu.html" class="hero-cta primary">お品書きを見る</a>
+            <a href="tel:03-1234-5678" class="hero-cta secondary">お電話でご予約</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 今月のおすすめ -->
+      <section id="recommendations" class="recommendations">
+        <div class="container">
+          <h2 class="section-title">今月のおすすめ</h2>
+
+          <div class="c_tab">
+            <!-- タブナビゲーション -->
+            <ul class="c_tab_list">
+              <li><button type="button" class="-open" aria-pressed="true" tabindex="-1">魚料理</button></li>
+              <li><button type="button" aria-pressed="false" tabindex="0">野菜料理</button></li>
+              <li><button type="button" aria-pressed="false" tabindex="0">肉料理</button></li>
+            </ul>
+
+            <!-- 魚料理タブ -->
+            <div class="c_tab_content" tabindex="0">
+              <div class="recommendations-grid">
+                <div class="recommendation-item">
+                  <h3 class="recommendation-title">桜鯛の春仕立て</h3>
+                  <p class="recommendation-description">
+                    春の訪れを告げる桜鯛を、季節の野菜と合わせて上品に仕上げました。
+                  </p>
+                  <p class="recommendation-price">5,500円</p>
+                </div>
+                <div class="recommendation-item">
+                  <h3 class="recommendation-title">鰆の西京焼き</h3>
+                  <p class="recommendation-description">
+                    脂ののった鰆を西京味噌で漬け込み、香ばしく焼き上げました。
+                  </p>
+                  <p class="recommendation-price">4,800円</p>
+                </div>
+                <div class="recommendation-item">
+                  <h3 class="recommendation-title">のどぐろの塩焼き</h3>
+                  <p class="recommendation-description">
+                    高級魚のどぐろを塩だけでシンプルに焼き上げた逸品です。
+                  </p>
+                  <p class="recommendation-price">8,500円</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 野菜料理タブ -->
+            <div class="c_tab_content" tabindex="-1" hidden>
+              <div class="recommendations-grid">
+                <div class="recommendation-item">
+                  <h3 class="recommendation-title">筍と若芽の椀物</h3>
+                  <p class="recommendation-description">
+                    朝採りの筍を使った、春の香り豊かな椀物です。
+                  </p>
+                  <p class="recommendation-price">2,800円</p>
+                </div>
+                <div class="recommendation-item">
+                  <h3 class="recommendation-title">春野菜の炊合せ</h3>
+                  <p class="recommendation-description">
+                    旬の春野菜を丁寧に炊き合わせた季節感あふれる一品。
+                  </p>
+                  <p class="recommendation-price">3,800円</p>
+                </div>
+                <div class="recommendation-item">
+                  <h3 class="recommendation-title">山菜の天ぷら</h3>
+                  <p class="recommendation-description">
+                    山の恵みを軽やかな衣で包んだ春限定の天ぷらです。
+                  </p>
+                  <p class="recommendation-price">3,200円</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 肉料理タブ -->
+            <div class="c_tab_content" tabindex="-1" hidden>
+              <div class="recommendations-grid">
+                <div class="recommendation-item">
+                  <h3 class="recommendation-title">和牛ロースの陶板焼き</h3>
+                  <p class="recommendation-description">
+                    厳選された和牛ロースを陶板でじっくりと焼き上げました。
+                  </p>
+                  <p class="recommendation-price">6,800円</p>
+                </div>
+                <div class="recommendation-item">
+                  <h3 class="recommendation-title">鴨ロースの治部煮</h3>
+                  <p class="recommendation-description">
+                    加賀の郷土料理、治部煮を料亭風にアレンジした自慢の一品。
+                  </p>
+                  <p class="recommendation-price">5,500円</p>
+                </div>
+                <div class="recommendation-item">
+                  <h3 class="recommendation-title">豚の角煮</h3>
+                  <p class="recommendation-description">
+                    じっくりと煮込んだ豚バラ肉が箸で崩れるほどやわらか。
+                  </p>
+                  <p class="recommendation-price">4,200円</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="recommendations-footer">
+            <a href="menu.html" class="menu-link">すべてのお品書きを見る</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- コンセプト・メッセージ -->
+      <section id="concept" class="concept">
+        <div class="container">
+          <div class="concept-content">
+            <h2 class="section-title">おもてなしの心</h2>
+            <div class="concept-main">
+              <div class="concept-text">
+                <p class="concept-message">
+                  料亭みかみは、創業以来変わらぬ「心のこもったおもてなし」を大切にしております。<br>
+                  季節の移ろいを感じられる空間で、厳選された食材を使った伝統の日本料理をお楽しみください。<br><br>
+                  一期一会の時間を、心を込めてお迎えいたします。
+                </p>
+              </div>
+              <div class="concept-image">
+                <img src="/_assets/img/top/okami.jpg" alt="女将からのご挨拶" class="proprietress-image">
+              </div>
+            </div>
+            <div class="concept-features">
+              <div class="feature">
+                <h3 class="feature-title">厳選食材</h3>
+                <p class="feature-description">全国から取り寄せる四季の恵み</p>
+              </div>
+              <div class="feature">
+                <h3 class="feature-title">伝統技法</h3>
+                <p class="feature-description">受け継がれる職人の技</p>
+              </div>
+              <div class="feature">
+                <h3 class="feature-title">季節感</h3>
+                <p class="feature-description">移ろう季節を五感で感じる</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- アクセス情報 -->
+      <section id="access" class="access">
+        <div class="container">
+          <h2 class="section-title">アクセス</h2>
+          <div class="access-content">
+            <div class="access-info">
+              <h3 class="access-title">料亭みかみ</h3>
+              <div class="access-details">
+                <p><strong>住所</strong><br>〒100-0001 東京都千代田区千代田1-1-1</p>
+                <p><strong>電話番号</strong><br>03-1234-5678</p>
+                <p><strong>営業時間</strong><br>
+                  昼の部：11:30〜14:00（L.O. 13:30）<br>
+                  夜の部：17:30〜21:00（L.O. 20:00）
+                </p>
+                <p><strong>定休日</strong><br>日曜日、祝日</p>
+                <p><strong>アクセス</strong><br>
+                  JR東京駅より徒歩5分<br>
+                  地下鉄大手町駅より徒歩3分
+                </p>
+              </div>
+            </div>
+            <div class="access-map">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.8280649159773!2d139.76393431562425!3d35.68123608019544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x277c49ba34ed38!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1638360000000!5m2!1sja!2sjp"
+                width="100%"
+                height="300"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-info">
+            <h3 class="footer-title">料亭みかみ</h3>
+            <p class="footer-address">〒100-0001 東京都千代田区千代田1-1-1</p>
+            <p class="footer-phone">TEL: 03-1234-5678</p>
+          </div>
+          <div class="footer-hours">
+            <h4>営業時間</h4>
+            <p>昼の部：11:30〜14:00</p>
+            <p>夜の部：17:30〜21:00</p>
+            <p>定休日：日曜日、祝日</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 料亭みかみ. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script defer src="/_assets/js/app.js"></script>
+  </body>
+</html>

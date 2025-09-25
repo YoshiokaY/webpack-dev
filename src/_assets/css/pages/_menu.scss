@@ -1,0 +1,293 @@
+@use "../abstracts" as *;
+
+// ページヘッダー
+.page-header {
+  position: relative;
+  padding: 100px 0 80px;
+  overflow: hidden;
+
+  @include mq(sp) {
+    padding: 80px 0 60px;
+  }
+
+  .page-hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+
+    .hero-bg-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.4);
+    }
+  }
+
+  .page-header-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .page-title {
+    margin-bottom: 20px;
+    font-size: 3rem;
+    color: $color-white;
+    text-shadow: 2px 2px 4px rgb(0 0 0 / 0.7);
+
+    @include mq(sp) {
+      font-size: 2.5rem;
+    }
+  }
+
+  .page-subtitle {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: $color-white;
+    text-shadow: 1px 1px 2px rgb(0 0 0 / 0.7);
+  }
+}
+
+// メニューセクション共通
+.menu-section {
+  padding: 60px 0;
+
+  &:nth-child(even) {
+    background-color: $color-bg-light;
+  }
+
+  @include mq(sp) {
+    padding: 40px 0;
+  }
+}
+
+// 懐石コース
+.kaiseki {
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+
+    @include mq(sp) {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
+
+  .menu-item {
+    padding: 30px;
+    background-color: $color-white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+    transition: transform 0.3s ease;
+
+    @include hover {
+      transform: translateY(-3px);
+    }
+  }
+
+  .menu-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid $color-prime;
+  }
+
+  .menu-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $color-prime;
+  }
+
+  .menu-price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: $color-accent;
+  }
+
+  .menu-description {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: $color-text;
+  }
+
+  .menu-details {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      padding: 8px 0;
+      font-size: 0.95rem;
+      border-bottom: 1px solid $color-border;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &::before {
+        margin-right: 8px;
+        font-weight: bold;
+        color: $color-prime;
+        content: "・";
+      }
+    }
+  }
+}
+
+// 単品料理・お飲み物
+.dishes, .drinks {
+  .menu-categories, .drink-categories {
+    margin-top: 40px;
+  }
+
+  .menu-category, .drink-category {
+    margin-bottom: 50px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .category-title {
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    color: $color-prime;
+    border-bottom: 3px solid $color-accent;
+
+    @include mq(sp) {
+      font-size: 1.5rem;
+    }
+  }
+
+  .menu-list {
+    padding: 25px;
+    background-color: $color-white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.05);
+  }
+
+  .menu-simple {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid $color-border;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    @include mq(sp) {
+      flex-direction: column;
+      gap: 5px;
+      align-items: flex-start;
+    }
+  }
+
+  .dish-name {
+    font-weight: 500;
+    color: $color-text;
+  }
+
+  .dish-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: $color-accent;
+  }
+}
+
+// お飲み物セクション特有のスタイル
+.drinks {
+  .drink-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+
+    @include mq(sp) {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
+}
+
+// 予約案内
+.reservation-info {
+  padding: 80px 0;
+  color: $color-white;
+  background-color: $color-prime;
+
+  @include mq(sp) {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    color: $color-white;
+
+    &::after {
+      background-color: $color-accent;
+    }
+  }
+
+  .reservation-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .reservation-text {
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .reservation-details {
+    padding: 30px;
+    background-color: rgb(255 255 255 / 0.1);
+    border-radius: 10px;
+
+    p {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    strong {
+      font-size: 1.2rem;
+    }
+  }
+
+  .phone-number {
+    margin: 20px 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: $color-second;
+
+    @include mq(sp) {
+      font-size: 1.5rem;
+    }
+  }
+
+  .hours {
+    font-size: 0.95rem;
+    color: $color-second;
+  }
+}
+
+// アクティブなナビゲーションリンク
+.nav-link.active {
+  font-weight: bold;
+  color: $color-accent;
+}
