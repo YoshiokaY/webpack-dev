@@ -4,7 +4,7 @@ window.addEventListener("load", () => {
   new HogeScript();
 });
 
-window.addEventListener("DOMContentLoaded", () => {
-  const img = document.querySelector("#concept .section-title");
-  // console.log(img.innerHTML);
-});
+// window.addEventListener("DOMContentLoaded", () => {
+//   const img = document.querySelector("#concept .section-title");
+//   // console.log(img.innerHTML);
+// });

@@ -23,6 +23,11 @@
   }
 }
 
+span {
+  font-weight: normal;
+  color: $color-text;
+}
+
 p {
   font-weight: bold;
   color: $color-prime;
@@ -32,9 +37,4 @@ p {
     color: $color-second;
     background-color: $color-text;
   }
-}
-
-span {
-  font-weight: normal;
-  color: $color-text;
 }
