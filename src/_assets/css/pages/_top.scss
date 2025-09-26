@@ -1,0 +1,40 @@
+@use "../abstracts" as *;
+
+.hoge {
+  background-color: $color-prime;
+  @include mq() {
+    background-color: $color-second;
+  }
+}
+
+.fuga {
+  position: relative;
+  color: $color-text;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: auto;
+    content: "サンプル";
+  }
+  @include hover {
+    color: $color-prime;
+  }
+}
+
+span {
+  font-weight: normal;
+  color: $color-text;
+}
+
+p {
+  font-weight: bold;
+  color: $color-prime;
+
+  span {
+    font-weight: bold;
+    color: $color-second;
+    background-color: $color-text;
+  }
+}
