@@ -37,7 +37,7 @@
     "eslint-config-prettier": "^10.1.5",
     "glob": "^11.0.3",
     "globals": "^16.2.0",
-    "image-minimizer-webpack-plugin": "^4.1.4",
+    "image-minimizer-webpack-plugin": "^5.0.0",
     "imagemin": "^9.0.1",
     "imagemin-gifsicle": "^7.0.0",
     "imagemin-mozjpeg": "^10.0.0",
